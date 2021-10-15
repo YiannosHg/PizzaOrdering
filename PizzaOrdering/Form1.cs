@@ -25,48 +25,62 @@ namespace PizzaOrdering
         // Extra ingredient cost
         private const double extraIngredientCost = 0.75;
 
+        // Variables
         double pizzaSizeCost = 0;
         double totalCost = 0;
         int freeIngredients = 0;
         int numOfIngredients = 0;
+        string deliveryTime = null;
 
         public Form1()
         {
             InitializeComponent();
         }
 
+        // Declaring what happens when Order button is clicked
         private void orderButton_Click(object sender, EventArgs e)
         {
-            
+            int result = checkDeliveryTime();
+
+            if (0 == result)
+            {
+                MessageBox.Show("Please enter a valid time", "Time not a valid ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (1 == result)
+                MessageBox.Show("Provide delivery time on the future", "Time not a valid ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show($"The total for your pizza is € {totalCost} (to be delivered at {deliveryTime}), " +
+                    $"are you sure you want to order ? ", "Order confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+
+                if (dialogResult == DialogResult.Yes)
+                    MessageBox.Show("Order successfully completed", "Order result", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("The order was canceled", "Order result", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
+        // Declaring what happens when each of the 3 radio buttons is pressed
         private void smallRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            IngredientsGroupBox.Enabled = true;
-            pizzaSizeCost = smallSizeCost;
-            freeIngredients = smallFreeIngredients;
-            ingredientsLabel.Text = "Ingredients: Free up to: " + freeIngredients + Environment.NewLine +"0.75 for each extra ingredient";
-            priceLabel.Text = pizzaSizeCost.ToString();
+            setPizzaSize(smallSizeCost, smallFreeIngredients);
+            setTotalCost();
         }
 
         private void mediumRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            IngredientsGroupBox.Enabled = true;
-            pizzaSizeCost = mediumSizeCost;
-            freeIngredients = mediumFreeIngredients;
-            ingredientsLabel.Text = "Ingredients: Free up to: " + freeIngredients + Environment.NewLine + "0.75 for each extra ingredient";
-            priceLabel.Text = pizzaSizeCost.ToString();
+            setPizzaSize(mediumSizeCost, mediumFreeIngredients);
+            setTotalCost();
         }
 
         private void largeRadioButton_CheckedChanged(object sender, EventArgs e)
         {
-            IngredientsGroupBox.Enabled = true;
-            pizzaSizeCost = largeSizeCost;
-            freeIngredients = largeFreeIngredients;
-            ingredientsLabel.Text = "Ingredients: Free up to: " + freeIngredients + Environment.NewLine + "0.75 for each extra ingredient";
-            priceLabel.Text = pizzaSizeCost.ToString();
+            setPizzaSize(largeSizeCost, largeFreeIngredients);
+            setTotalCost();
         }
 
+        // Declaring what happens when each of the 6 check boxes is pressed
         private void peperoniCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (peperoniCheckBox.Checked == false)
@@ -127,6 +141,30 @@ namespace PizzaOrdering
             setTotalCost();
         }
 
+        /**
+        * Function <code>setPizzaSize</code> sets the pizza cost and its free ingredients
+        * based on the pizza size. Shows a message of the number of free ingredients
+        * and gives access to the ingredients, the time and the order button.
+        * <BR>
+        * @param cost The cost of the pizza based on its size.
+        * @param ingredients The number of free ingredients based on the pizza size.
+        */
+        void setPizzaSize(double cost, int ingredients)
+        {
+            IngredientsGroupBox.Enabled = true;
+            timeMaskedTextBox.Enabled = true;
+            priceLabel.Enabled = true;
+            orderButton.Visible = true;
+            pizzaSizeCost = cost;
+            freeIngredients = ingredients;
+            ingredientsLabel.Text = "Ingredients: Free up to: " + freeIngredients + Environment.NewLine + "0.75 for each extra ingredient";
+            priceLabel.Text = pizzaSizeCost.ToString();
+        }
+
+        /**
+        * Function <code>setTotalCost</code> sets the pizza cost based on the number 
+        * of selected ingredients.
+        */
         void setTotalCost()
         {
             if (numOfIngredients > freeIngredients)
@@ -135,6 +173,33 @@ namespace PizzaOrdering
                 totalCost = pizzaSizeCost;
 
             priceLabel.Text = totalCost.ToString();
+        }
+
+        /**
+         * Function <code>checkDeliveryTime</code> checks if the imput time
+         * is valid.
+         * Returns:
+         *  0: Not valid time
+         *  1: Time in the past
+         *  2: Time is valid
+         */
+        int checkDeliveryTime()
+        {
+            string currentTime = DateTime.Now.ToShortTimeString().Replace(":", "");
+            int numCurrentTime = int.Parse(currentTime);
+            int numDeliveryTime = int.Parse(timeMaskedTextBox.Text.Replace(":", ""));
+            
+            deliveryTime = timeMaskedTextBox.Text;
+
+            if (numDeliveryTime < 0 || numDeliveryTime > 2359) // Check if is a valid number
+                return 0;
+            else if (int.Parse(deliveryTime[0].ToString()) > 5 || int.Parse(deliveryTime[1].ToString()) > 5
+                    || int.Parse(deliveryTime[3].ToString()) > 5) // Check if is a valid number
+                return 0;
+            else if (numCurrentTime > numDeliveryTime) // Check if current time is greater than delivery time
+                return 1;
+            else
+                return 2;
         }
     }
 }

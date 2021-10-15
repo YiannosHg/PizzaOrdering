@@ -47,9 +47,11 @@ namespace PizzaOrdering
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.priceLabel = new System.Windows.Forms.Label();
-            this.nOfIn = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.SizeGroupBox.SuspendLayout();
             this.IngredientsGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // SizeGroupBox
@@ -58,9 +60,10 @@ namespace PizzaOrdering
             this.SizeGroupBox.Controls.Add(this.largeRadioButton);
             this.SizeGroupBox.Controls.Add(this.mediumRadioButton);
             this.SizeGroupBox.Controls.Add(this.smallRadioButton);
-            this.SizeGroupBox.Location = new System.Drawing.Point(93, 39);
+            this.SizeGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.SizeGroupBox.Location = new System.Drawing.Point(12, 146);
             this.SizeGroupBox.Name = "SizeGroupBox";
-            this.SizeGroupBox.Size = new System.Drawing.Size(235, 113);
+            this.SizeGroupBox.Size = new System.Drawing.Size(235, 144);
             this.SizeGroupBox.TabIndex = 0;
             this.SizeGroupBox.TabStop = false;
             this.SizeGroupBox.Text = "Size";
@@ -70,43 +73,40 @@ namespace PizzaOrdering
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(7, 21);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 13);
+            this.label1.Size = new System.Drawing.Size(117, 16);
             this.label1.TabIndex = 3;
             this.label1.Text = "Please select size";
             // 
             // largeRadioButton
             // 
             this.largeRadioButton.AutoSize = true;
-            this.largeRadioButton.Location = new System.Drawing.Point(7, 88);
+            this.largeRadioButton.Location = new System.Drawing.Point(10, 109);
             this.largeRadioButton.Name = "largeRadioButton";
-            this.largeRadioButton.Size = new System.Drawing.Size(52, 17);
+            this.largeRadioButton.Size = new System.Drawing.Size(112, 20);
             this.largeRadioButton.TabIndex = 2;
-            this.largeRadioButton.TabStop = true;
-            this.largeRadioButton.Text = "Large";
+            this.largeRadioButton.Text = "Large - € 15.00";
             this.largeRadioButton.UseVisualStyleBackColor = true;
             this.largeRadioButton.CheckedChanged += new System.EventHandler(this.largeRadioButton_CheckedChanged);
             // 
             // mediumRadioButton
             // 
             this.mediumRadioButton.AutoSize = true;
-            this.mediumRadioButton.Location = new System.Drawing.Point(7, 64);
+            this.mediumRadioButton.Location = new System.Drawing.Point(10, 85);
             this.mediumRadioButton.Name = "mediumRadioButton";
-            this.mediumRadioButton.Size = new System.Drawing.Size(62, 17);
+            this.mediumRadioButton.Size = new System.Drawing.Size(125, 20);
             this.mediumRadioButton.TabIndex = 1;
-            this.mediumRadioButton.TabStop = true;
-            this.mediumRadioButton.Text = "Medium";
+            this.mediumRadioButton.Text = "Medium - € 11.75";
             this.mediumRadioButton.UseVisualStyleBackColor = true;
             this.mediumRadioButton.CheckedChanged += new System.EventHandler(this.mediumRadioButton_CheckedChanged);
             // 
             // smallRadioButton
             // 
             this.smallRadioButton.AutoSize = true;
-            this.smallRadioButton.Location = new System.Drawing.Point(7, 40);
+            this.smallRadioButton.Location = new System.Drawing.Point(10, 61);
             this.smallRadioButton.Name = "smallRadioButton";
-            this.smallRadioButton.Size = new System.Drawing.Size(50, 17);
+            this.smallRadioButton.Size = new System.Drawing.Size(104, 20);
             this.smallRadioButton.TabIndex = 0;
-            this.smallRadioButton.TabStop = true;
-            this.smallRadioButton.Text = "Small";
+            this.smallRadioButton.Text = "Small - € 5.50";
             this.smallRadioButton.UseVisualStyleBackColor = true;
             this.smallRadioButton.CheckedChanged += new System.EventHandler(this.smallRadioButton_CheckedChanged);
             // 
@@ -120,9 +120,10 @@ namespace PizzaOrdering
             this.IngredientsGroupBox.Controls.Add(this.onionCheckBox);
             this.IngredientsGroupBox.Controls.Add(this.peperoniCheckBox);
             this.IngredientsGroupBox.Enabled = false;
-            this.IngredientsGroupBox.Location = new System.Drawing.Point(93, 172);
+            this.IngredientsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.IngredientsGroupBox.Location = new System.Drawing.Point(273, 146);
             this.IngredientsGroupBox.Name = "IngredientsGroupBox";
-            this.IngredientsGroupBox.Size = new System.Drawing.Size(235, 196);
+            this.IngredientsGroupBox.Size = new System.Drawing.Size(256, 144);
             this.IngredientsGroupBox.TabIndex = 1;
             this.IngredientsGroupBox.TabStop = false;
             this.IngredientsGroupBox.Text = "Ingredients";
@@ -132,16 +133,16 @@ namespace PizzaOrdering
             this.ingredientsLabel.AutoSize = true;
             this.ingredientsLabel.Location = new System.Drawing.Point(6, 19);
             this.ingredientsLabel.Name = "ingredientsLabel";
-            this.ingredientsLabel.Size = new System.Drawing.Size(124, 13);
+            this.ingredientsLabel.Size = new System.Drawing.Size(159, 16);
             this.ingredientsLabel.TabIndex = 6;
             this.ingredientsLabel.Text = "Please select ingredients";
             // 
             // extraCheeseCheckBox
             // 
             this.extraCheeseCheckBox.AutoSize = true;
-            this.extraCheeseCheckBox.Location = new System.Drawing.Point(6, 175);
+            this.extraCheeseCheckBox.Location = new System.Drawing.Point(143, 107);
             this.extraCheeseCheckBox.Name = "extraCheeseCheckBox";
-            this.extraCheeseCheckBox.Size = new System.Drawing.Size(88, 17);
+            this.extraCheeseCheckBox.Size = new System.Drawing.Size(105, 20);
             this.extraCheeseCheckBox.TabIndex = 5;
             this.extraCheeseCheckBox.Text = "Extra cheese";
             this.extraCheeseCheckBox.UseVisualStyleBackColor = true;
@@ -150,9 +151,9 @@ namespace PizzaOrdering
             // pineappleCheckBox
             // 
             this.pineappleCheckBox.AutoSize = true;
-            this.pineappleCheckBox.Location = new System.Drawing.Point(6, 151);
+            this.pineappleCheckBox.Location = new System.Drawing.Point(5, 107);
             this.pineappleCheckBox.Name = "pineappleCheckBox";
-            this.pineappleCheckBox.Size = new System.Drawing.Size(73, 17);
+            this.pineappleCheckBox.Size = new System.Drawing.Size(89, 20);
             this.pineappleCheckBox.TabIndex = 4;
             this.pineappleCheckBox.Text = "Pineapple";
             this.pineappleCheckBox.UseVisualStyleBackColor = true;
@@ -161,9 +162,9 @@ namespace PizzaOrdering
             // blackOlivesCheckBox
             // 
             this.blackOlivesCheckBox.AutoSize = true;
-            this.blackOlivesCheckBox.Location = new System.Drawing.Point(6, 127);
+            this.blackOlivesCheckBox.Location = new System.Drawing.Point(143, 84);
             this.blackOlivesCheckBox.Name = "blackOlivesCheckBox";
-            this.blackOlivesCheckBox.Size = new System.Drawing.Size(85, 17);
+            this.blackOlivesCheckBox.Size = new System.Drawing.Size(102, 20);
             this.blackOlivesCheckBox.TabIndex = 3;
             this.blackOlivesCheckBox.Text = "Black Olives";
             this.blackOlivesCheckBox.UseVisualStyleBackColor = true;
@@ -172,9 +173,9 @@ namespace PizzaOrdering
             // mushroomCheckBox
             // 
             this.mushroomCheckBox.AutoSize = true;
-            this.mushroomCheckBox.Location = new System.Drawing.Point(6, 103);
+            this.mushroomCheckBox.Location = new System.Drawing.Point(5, 84);
             this.mushroomCheckBox.Name = "mushroomCheckBox";
-            this.mushroomCheckBox.Size = new System.Drawing.Size(75, 17);
+            this.mushroomCheckBox.Size = new System.Drawing.Size(90, 20);
             this.mushroomCheckBox.TabIndex = 2;
             this.mushroomCheckBox.Text = "Mushroom";
             this.mushroomCheckBox.TextAlign = System.Drawing.ContentAlignment.TopLeft;
@@ -184,9 +185,9 @@ namespace PizzaOrdering
             // onionCheckBox
             // 
             this.onionCheckBox.AutoSize = true;
-            this.onionCheckBox.Location = new System.Drawing.Point(6, 79);
+            this.onionCheckBox.Location = new System.Drawing.Point(143, 61);
             this.onionCheckBox.Name = "onionCheckBox";
-            this.onionCheckBox.Size = new System.Drawing.Size(54, 17);
+            this.onionCheckBox.Size = new System.Drawing.Size(62, 20);
             this.onionCheckBox.TabIndex = 1;
             this.onionCheckBox.Text = "Onion";
             this.onionCheckBox.UseVisualStyleBackColor = true;
@@ -195,9 +196,9 @@ namespace PizzaOrdering
             // peperoniCheckBox
             // 
             this.peperoniCheckBox.AutoSize = true;
-            this.peperoniCheckBox.Location = new System.Drawing.Point(6, 55);
+            this.peperoniCheckBox.Location = new System.Drawing.Point(5, 61);
             this.peperoniCheckBox.Name = "peperoniCheckBox";
-            this.peperoniCheckBox.Size = new System.Drawing.Size(68, 17);
+            this.peperoniCheckBox.Size = new System.Drawing.Size(82, 20);
             this.peperoniCheckBox.TabIndex = 0;
             this.peperoniCheckBox.Text = "Peperoni";
             this.peperoniCheckBox.UseVisualStyleBackColor = true;
@@ -205,63 +206,88 @@ namespace PizzaOrdering
             // 
             // orderButton
             // 
-            this.orderButton.Location = new System.Drawing.Point(139, 422);
+            this.orderButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.orderButton.Location = new System.Drawing.Point(234, 387);
             this.orderButton.Name = "orderButton";
             this.orderButton.Size = new System.Drawing.Size(101, 39);
             this.orderButton.TabIndex = 2;
-            this.orderButton.Text = "Order";
+            this.orderButton.Text = "&Order";
             this.orderButton.UseVisualStyleBackColor = true;
+            this.orderButton.Visible = false;
             this.orderButton.Click += new System.EventHandler(this.orderButton_Click);
             // 
             // timeMaskedTextBox
             // 
-            this.timeMaskedTextBox.Location = new System.Drawing.Point(140, 374);
+            this.timeMaskedTextBox.Enabled = false;
+            this.timeMaskedTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.timeMaskedTextBox.Location = new System.Drawing.Point(120, 326);
+            this.timeMaskedTextBox.Mask = "00:00";
             this.timeMaskedTextBox.Name = "timeMaskedTextBox";
-            this.timeMaskedTextBox.Size = new System.Drawing.Size(100, 20);
+            this.timeMaskedTextBox.Size = new System.Drawing.Size(100, 26);
             this.timeMaskedTextBox.TabIndex = 3;
+            this.timeMaskedTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.timeMaskedTextBox.ValidatingType = typeof(System.DateTime);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(93, 374);
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.label3.Location = new System.Drawing.Point(8, 327);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 13);
+            this.label3.Size = new System.Drawing.Size(106, 20);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Time:";
+            this.label3.Text = "Delivery Time:";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(315, 377);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.label4.Location = new System.Drawing.Point(363, 326);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(31, 13);
+            this.label4.Size = new System.Drawing.Size(87, 20);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Total";
+            this.label4.Text = "Total Price:";
             // 
             // priceLabel
             // 
             this.priceLabel.AutoSize = true;
-            this.priceLabel.Location = new System.Drawing.Point(366, 380);
+            this.priceLabel.Enabled = false;
+            this.priceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.priceLabel.ForeColor = System.Drawing.Color.Red;
+            this.priceLabel.Location = new System.Drawing.Point(449, 325);
             this.priceLabel.Name = "priceLabel";
-            this.priceLabel.Size = new System.Drawing.Size(28, 13);
+            this.priceLabel.Size = new System.Drawing.Size(54, 25);
             this.priceLabel.TabIndex = 7;
             this.priceLabel.Text = "0.00";
             // 
-            // nOfIn
+            // label2
             // 
-            this.nOfIn.AutoSize = true;
-            this.nOfIn.Location = new System.Drawing.Point(270, 380);
-            this.nOfIn.Name = "nOfIn";
-            this.nOfIn.Size = new System.Drawing.Size(14, 13);
-            this.nOfIn.TabIndex = 8;
-            this.nOfIn.Text = "#";
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.label2.ForeColor = System.Drawing.Color.Red;
+            this.label2.Location = new System.Drawing.Point(17, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(124, 29);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Unic Pizza";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::PizzaOrdering.Properties.Resources.pizza;
+            this.pictureBox1.Location = new System.Drawing.Point(376, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(153, 116);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(526, 488);
-            this.Controls.Add(this.nOfIn);
+            this.ClientSize = new System.Drawing.Size(541, 488);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.priceLabel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -275,6 +301,7 @@ namespace PizzaOrdering
             this.SizeGroupBox.PerformLayout();
             this.IngredientsGroupBox.ResumeLayout(false);
             this.IngredientsGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -300,7 +327,8 @@ namespace PizzaOrdering
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label priceLabel;
-        private System.Windows.Forms.Label nOfIn;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 
