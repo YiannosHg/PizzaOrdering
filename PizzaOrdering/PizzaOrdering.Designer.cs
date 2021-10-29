@@ -1,7 +1,7 @@
 ﻿
 namespace PizzaOrdering
 {
-    partial class Form1
+    partial class PizzaOrdering
     {
         /// <summary>
         /// Required designer variable.
@@ -296,7 +296,7 @@ namespace PizzaOrdering
             this.Controls.Add(this.IngredientsGroupBox);
             this.Controls.Add(this.SizeGroupBox);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "PizzaOrdering";
             this.SizeGroupBox.ResumeLayout(false);
             this.SizeGroupBox.PerformLayout();
             this.IngredientsGroupBox.ResumeLayout(false);

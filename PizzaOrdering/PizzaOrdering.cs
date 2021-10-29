@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace PizzaOrdering
 {
-    public partial class Form1 : Form
+    public partial class PizzaOrdering : Form
     {
         // Price of pizza based on its size
         private const double smallSizeCost = 5.50;
@@ -32,7 +32,7 @@ namespace PizzaOrdering
         int numOfIngredients = 0;
         string deliveryTime = null;
 
-        public Form1()
+        public PizzaOrdering()
         {
             InitializeComponent();
         }
@@ -193,8 +193,7 @@ namespace PizzaOrdering
 
             if (numDeliveryTime < 0 || numDeliveryTime > 2359) // Check if is a valid number
                 return 0;
-            else if (int.Parse(deliveryTime[0].ToString()) > 5 || int.Parse(deliveryTime[1].ToString()) > 5
-                    || int.Parse(deliveryTime[3].ToString()) > 5) // Check if is a valid number
+            else if (int.Parse(deliveryTime[3].ToString()) > 5) // Check if is a valid number
                 return 0;
             else if (numCurrentTime > numDeliveryTime) // Check if current time is greater than delivery time
                 return 1;
