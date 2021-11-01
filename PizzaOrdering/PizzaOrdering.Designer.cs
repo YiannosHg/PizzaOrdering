@@ -49,6 +49,7 @@ namespace PizzaOrdering
             this.priceLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.settingsButton = new System.Windows.Forms.Button();
             this.SizeGroupBox.SuspendLayout();
             this.IngredientsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -207,9 +208,9 @@ namespace PizzaOrdering
             // orderButton
             // 
             this.orderButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.orderButton.Location = new System.Drawing.Point(234, 387);
+            this.orderButton.Location = new System.Drawing.Point(157, 397);
             this.orderButton.Name = "orderButton";
-            this.orderButton.Size = new System.Drawing.Size(101, 39);
+            this.orderButton.Size = new System.Drawing.Size(100, 39);
             this.orderButton.TabIndex = 2;
             this.orderButton.Text = "&Order";
             this.orderButton.UseVisualStyleBackColor = true;
@@ -281,11 +282,22 @@ namespace PizzaOrdering
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
-            // Form1
+            // settingsButton
+            // 
+            this.settingsButton.Location = new System.Drawing.Point(346, 397);
+            this.settingsButton.Name = "settingsButton";
+            this.settingsButton.Size = new System.Drawing.Size(100, 39);
+            this.settingsButton.TabIndex = 11;
+            this.settingsButton.Text = "Settings";
+            this.settingsButton.UseVisualStyleBackColor = true;
+            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
+            // 
+            // PizzaOrdering
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(541, 488);
+            this.Controls.Add(this.settingsButton);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.priceLabel);
@@ -295,7 +307,7 @@ namespace PizzaOrdering
             this.Controls.Add(this.orderButton);
             this.Controls.Add(this.IngredientsGroupBox);
             this.Controls.Add(this.SizeGroupBox);
-            this.Name = "Form1";
+            this.Name = "PizzaOrdering";
             this.Text = "PizzaOrdering";
             this.SizeGroupBox.ResumeLayout(false);
             this.SizeGroupBox.PerformLayout();
@@ -329,6 +341,7 @@ namespace PizzaOrdering
         private System.Windows.Forms.Label priceLabel;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button settingsButton;
     }
 }
 

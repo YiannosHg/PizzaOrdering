@@ -31,6 +31,7 @@ namespace PizzaOrdering
         int freeIngredients = 0;
         int numOfIngredients = 0;
         string deliveryTime = null;
+        SettingsForm settings = new SettingsForm();
 
         public PizzaOrdering()
         {
@@ -59,6 +60,11 @@ namespace PizzaOrdering
                 else
                     MessageBox.Show("The order was canceled", "Order result", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void settingsButton_Click(object sender, EventArgs e)
+        {
+            settings.ShowDialog();
         }
 
         // Declaring what happens when each of the 3 radio buttons is pressed
