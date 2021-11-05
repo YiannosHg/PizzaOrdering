@@ -8,5 +8,15 @@ namespace PizzaOrdering
 {
     class PizzaTopping
     {
+        PizzaTopping() { }
+
+        public PizzaTopping(string name, double prise)
+        {
+            Name = name;
+            Prise = prise;
+        }
+
+        public string Name { get; set; }
+        public double Prise { get; set; }
     }
 }

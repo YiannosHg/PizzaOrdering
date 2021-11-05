@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace PizzaOrdering
 {
-    public partial class PizzaOrdering : Form
+    public partial class PizzaOrderingForm : Form
     {
         // Price of pizza based on its size
         private const double smallSizeCost = 5.50;
@@ -31,9 +31,9 @@ namespace PizzaOrdering
         int freeIngredients = 0;
         int numOfIngredients = 0;
         string deliveryTime = null;
-        SettingsForm settings = new SettingsForm();
+        SettingsForm settingsForm = new SettingsForm();
 
-        public PizzaOrdering()
+        public PizzaOrderingForm()
         {
             InitializeComponent();
         }
@@ -43,10 +43,8 @@ namespace PizzaOrdering
         {
             int result = checkDeliveryTime();
 
-            if (0 == result)
-            {
-                MessageBox.Show("Please enter a valid time", "Time not a valid ", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            if (0 == result)           
+                MessageBox.Show("Please enter a valid time", "Time not a valid ", MessageBoxButtons.OK, MessageBoxIcon.Error);           
             else if (1 == result)
                 MessageBox.Show("Provide delivery time on the future", "Time not a valid ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             else
@@ -60,11 +58,6 @@ namespace PizzaOrdering
                 else
                     MessageBox.Show("The order was canceled", "Order result", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-        }
-
-        private void settingsButton_Click(object sender, EventArgs e)
-        {
-            settings.ShowDialog();
         }
 
         // Declaring what happens when each of the 3 radio buttons is pressed
@@ -205,6 +198,11 @@ namespace PizzaOrdering
                 return 1;
             else
                 return 2;
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            settingsForm.ShowDialog();
         }
     }
 }

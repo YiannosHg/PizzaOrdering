@@ -16,7 +16,7 @@ namespace PizzaOrdering
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new PizzaOrdering());
+            Application.Run(new PizzaOrderingForm());
         }
     }
 }

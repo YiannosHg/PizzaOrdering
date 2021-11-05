@@ -8,10 +8,7 @@ namespace PizzaOrdering
 {
     class PizzaSize
     {
-        public PizzaSize()
-        {
-        
-        }
+        public PizzaSize() { }
 
         public PizzaSize(string name, double prise, int freeToppings)
         {
