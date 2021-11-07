@@ -10,13 +10,13 @@ namespace PizzaOrdering
     {
         PizzaTopping() { }
 
-        public PizzaTopping(string name, double prise)
+        public PizzaTopping(string name, double price)
         {
             Name = name;
-            Prise = prise;
+            Price = price;
         }
 
         public string Name { get; set; }
-        public double Prise { get; set; }
+        public double Price { get; set; }
     }
 }

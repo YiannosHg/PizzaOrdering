@@ -23,15 +23,7 @@ namespace PizzaOrdering
         }
 
         private void SettingsForm_Load(object sender, EventArgs e)
-        {
-            /*pizzaSizes.Add(new PizzaSize("Small", 5.5, 2));
-            pizzaSizes.Add(new PizzaSize("Medium", 11.75, 3));
-            pizzaSizes.Add(new PizzaSize("Large", 15, 4));*/
-
-            /*pizzaToppings.Add(new PizzaTopping("Peperoni", 0.75));
-            pizzaToppings.Add(new PizzaTopping("Olives", 0.75));
-            pizzaToppings.Add(new PizzaTopping("Pineapple", 0.75));*/
-            
+        { 
             getSizesFromFile();
             getToppingsFromFile();
 
@@ -52,9 +44,6 @@ namespace PizzaOrdering
         {
             getSizesFromFile();
             pizzaSizeDataGridView.DataSource = new BindingList<PizzaSize>(pizzaSizes);
-
-            /*foreach (PizzaSize size in pizzaSizes)
-                Console.WriteLine($"Size: {size.Name}");*/
         }
 
         // Declares what happens when saveToppingsButton is clicked

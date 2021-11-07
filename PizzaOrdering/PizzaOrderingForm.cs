@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,30 +14,72 @@ namespace PizzaOrdering
 {
     public partial class PizzaOrderingForm : Form
     {
-        // Price of pizza based on its size
-        private const double smallSizeCost = 5.50;
-        private const double mediumSizeCost = 11.75;
-        private const double largeSizeCost = 15.00;
-
-        // Free ingredients based on pizza size
-        private const int smallFreeIngredients = 2;
-        private const int mediumFreeIngredients = 3;
-        private const int largeFreeIngredients = 4;
-
         // Extra ingredient cost
         private const double extraIngredientCost = 0.75;
 
         // Variables
         double pizzaSizeCost = 0;
         double totalCost = 0;
-        int freeIngredients = 0;
-        int numOfIngredients = 0;
+        int freeToppings = 0;
+        int numOfToppings = 0;
         string deliveryTime = null;
         SettingsForm settingsForm = new SettingsForm();
+        AboutForm aboutForm = new AboutForm();
+
+        // RadioButtons variables
+        private RadioButton[] sizesRadioButtons;
+        List<PizzaSize> pizzaSizes = new List<PizzaSize>();
+        
+        // CheckBoxes variables
+        private CheckBox[] toppingsCheckBoxes; // Declare array of toppings checkboxes
+        List<PizzaTopping> pizzaToppings = new List<PizzaTopping>();
 
         public PizzaOrderingForm()
         {
             InitializeComponent();
+        }
+
+        // Declares what happens when PizzaOrderingForm is loaded
+        private void PizzaOrderingForm_Load(object sender, EventArgs e)
+        {
+            // Sizes radio buttons
+            getPizzaSizesFromFile();
+            sizesRadioButtons = new RadioButton[pizzaSizes.Count]; // Create an array of sizes radiobuttons
+
+            for (int i = 0; i < pizzaSizes.Count; ++i)
+            {
+                sizesRadioButtons[i] = new RadioButton(); // Add radiobutton in array
+
+                // PROPERTIES
+                sizesRadioButtons[i].Text = pizzaSizes[i].Name;
+                sizesRadioButtons[i].Font = sizesGroupBox.Font;
+                sizesRadioButtons[i].Tag = i; // The postition of the radiobutton inside the list. Used to get properties (fields) from pizzaSizes list
+                sizesGroupBox.Controls.Add(sizesRadioButtons[i]);
+                sizesRadioButtons[i].Location = new Point(sizesRadioButtons[i].Location.X + 10 /*+ (30*i)*/, sizesRadioButtons[i].Location.Y + 50 + (20 * i));
+
+                // EVENT
+                sizesRadioButtons[i].CheckedChanged += new System.EventHandler(sizesRadioButtons_CheckedChanged);
+            }
+
+            // Toppings checked boxes
+            getToppingsFromFile();
+            toppingsCheckBoxes = new CheckBox[pizzaToppings.Count]; // Create array of toppings checkboxes
+            //peperoniCheckBox.CheckedChanged += new System.EventHandler(toppingsCheckBoxes_CheckedChanged);
+
+            for (int i = 0; i < pizzaToppings.Count; ++i)
+            {
+                toppingsCheckBoxes[i] = new CheckBox(); // Add checkbox in array
+
+                // PROPERTIES
+                toppingsCheckBoxes[i].Text = pizzaToppings[i].Name;
+                toppingsCheckBoxes[i].Font = toppingsGroupBox.Font;
+                toppingsGroupBox.Controls.Add(toppingsCheckBoxes[i]);
+                toppingsCheckBoxes[i].Location = new Point(toppingsCheckBoxes[i].Location.X + 10 /*+ (30*i)*/, toppingsCheckBoxes[i].Location.Y + 50 + (20 * i));
+
+                // EVENT
+                toppingsCheckBoxes[i].CheckedChanged += new System.EventHandler(toppingsCheckBoxes_CheckedChanged);
+            }
+            //this.Controls.AddRange(toppingsCheckBoxes); // Not needed because CheckBox is added at the GroupBox
         }
 
         // Declaring what happens when Order button is clicked
@@ -60,114 +104,53 @@ namespace PizzaOrdering
             }
         }
 
-        // Declaring what happens when each of the 3 radio buttons is pressed
-        private void smallRadioButton_CheckedChanged(object sender, EventArgs e)
+        // Declaring what happens when each of the radio buttons is pressed
+        private void sizesRadioButtons_CheckedChanged(object sender, EventArgs e)
         {
-            setPizzaSize(smallSizeCost, smallFreeIngredients);
+            int position = (int)((RadioButton)sender).Tag;
+            setPizzaSize(pizzaSizes[position].Price, pizzaSizes[position].FreeToppings);
             setTotalCost();
         }
 
-        private void mediumRadioButton_CheckedChanged(object sender, EventArgs e)
+        // Declaring what happens when each of the check boxes is pressed
+        private void toppingsCheckBoxes_CheckedChanged(object sender, System.EventArgs e)
         {
-            setPizzaSize(mediumSizeCost, mediumFreeIngredients);
-            setTotalCost();
-        }
-
-        private void largeRadioButton_CheckedChanged(object sender, EventArgs e)
-        {
-            setPizzaSize(largeSizeCost, largeFreeIngredients);
-            setTotalCost();
-        }
-
-        // Declaring what happens when each of the 6 check boxes is pressed
-        private void peperoniCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (peperoniCheckBox.Checked == false)
-                --numOfIngredients;
+            if(((CheckBox)sender).Checked == false)
+                --numOfToppings;
             else
-                ++numOfIngredients;
-
-            setTotalCost();
-        }
-
-        private void onionCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (onionCheckBox.Checked == false)
-                --numOfIngredients;
-            else
-                ++numOfIngredients;
-
-            setTotalCost();
-        }
-
-        private void mushroomCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (mushroomCheckBox.Checked == false)
-                --numOfIngredients;
-            else
-                ++numOfIngredients;
-
-            setTotalCost();
-        }
-
-        private void blackOlivesCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (blackOlivesCheckBox.Checked == false)
-                --numOfIngredients;
-            else
-                ++numOfIngredients;
-
-            setTotalCost();
-        }
-
-        private void pineappleCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (pineappleCheckBox.Checked == false)
-                --numOfIngredients;
-            else
-                ++numOfIngredients;
-
-            setTotalCost();
-        }
-
-        private void extraCheeseCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if (extraCheeseCheckBox.Checked == false)
-                --numOfIngredients;
-            else
-                ++numOfIngredients;
+                    ++numOfToppings;
 
             setTotalCost();
         }
 
         /**
-        * Function <code>setPizzaSize</code> sets the pizza cost and its free ingredients
-        * based on the pizza size. Shows a message of the number of free ingredients
-        * and gives access to the ingredients, the time and the order button.
+        * Function <code>setPizzaSize</code> sets the pizza cost and its free Toppings
+        * based on the pizza size. Shows a message of the number of free Toppings
+        * and gives access to the Toppings, the time and the order button.
         * <BR>
         * @param cost The cost of the pizza based on its size.
-        * @param ingredients The number of free ingredients based on the pizza size.
+        * @param Toppings The number of free Toppings based on the pizza size.
         */
-        void setPizzaSize(double cost, int ingredients)
+        void setPizzaSize(double cost, int toppings)
         {
-            IngredientsGroupBox.Enabled = true;
+            toppingsGroupBox.Enabled = true;
             timeMaskedTextBox.Enabled = true;
             priceLabel.Enabled = true;
             orderButton.Visible = true;
             pizzaSizeCost = cost;
-            freeIngredients = ingredients;
-            ingredientsLabel.Text = "Ingredients: Free up to: " + freeIngredients + Environment.NewLine + "0.75 for each extra ingredient";
+            freeToppings = toppings;
+            toppingsLabel.Text = "Free toppings: " + freeToppings + "   |   € 0.75 for each extra ingredient";
             priceLabel.Text = pizzaSizeCost.ToString();
         }
 
         /**
         * Function <code>setTotalCost</code> sets the pizza cost based on the number 
-        * of selected ingredients.
+        * of selected Toppings.
         */
         void setTotalCost()
         {
-            if (numOfIngredients > freeIngredients)
-                totalCost = (numOfIngredients - freeIngredients) * extraIngredientCost + pizzaSizeCost;
+            if (numOfToppings > freeToppings)
+                totalCost = (numOfToppings - freeToppings) * extraIngredientCost + pizzaSizeCost;
             else
                 totalCost = pizzaSizeCost;
 
@@ -184,25 +167,55 @@ namespace PizzaOrdering
          */
         int checkDeliveryTime()
         {
-            string currentTime = DateTime.Now.ToShortTimeString().Replace(":", "");
-            int numCurrentTime = int.Parse(currentTime);
-            int numDeliveryTime = int.Parse(timeMaskedTextBox.Text.Replace(":", ""));
-            
-            deliveryTime = timeMaskedTextBox.Text;
+            try
+            {
+                string currentTime = DateTime.Now.ToShortTimeString().Replace(":", "");
+                int numCurrentTime = int.Parse(currentTime);
+                int numDeliveryTime = int.Parse(timeMaskedTextBox.Text.Replace(":", ""));
 
-            if (numDeliveryTime < 0 || numDeliveryTime > 2359) // Check if is a valid number
-                return 0;
-            else if (int.Parse(deliveryTime[3].ToString()) > 5) // Check if is a valid number
-                return 0;
-            else if (numCurrentTime > numDeliveryTime) // Check if current time is greater than delivery time
-                return 1;
-            else
-                return 2;
+                deliveryTime = timeMaskedTextBox.Text;
+
+                if (numDeliveryTime < 0 || numDeliveryTime > 2359) // Check if is a valid number
+                    return 0;
+                else if (int.Parse(deliveryTime[3].ToString()) > 5) // Check if is a valid number
+                    return 0;
+                else if (numCurrentTime > numDeliveryTime) // Check if current time is greater than delivery time
+                    return 1;
+                else
+                    return 2;
+            }
+            catch { return 0; };
         }
 
+        // Function that gets the content of toppings file and stores it in the list
+        void getPizzaSizesFromFile()
+        {
+            // Variable that holds the content from the json file that holds the pizza sizes
+            var pizzaSizesInput = File.ReadAllText("pizzaSizesInputFile.json");
+
+            // Gets the pizza sizes and stores them into a list of class objects
+            pizzaSizes = JsonConvert.DeserializeObject<List<PizzaSize>>(pizzaSizesInput);
+        }
+
+        // Function that gets the content of toppings file and stores it in the list
+        void getToppingsFromFile()
+        {
+            // Variable that holds the content from the json file that holds the pizza sizes
+            var pizzaToppingsInput = File.ReadAllText("pizzaToppingsInputFile.json");
+
+            // Gets the pizza sizes and stores them into a list of class objects
+            pizzaToppings = JsonConvert.DeserializeObject<List<PizzaTopping>>(pizzaToppingsInput);
+        }
+
+        // Opens the Settings form
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             settingsForm.ShowDialog();
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            aboutForm.ShowDialog();   
         }
     }
 }

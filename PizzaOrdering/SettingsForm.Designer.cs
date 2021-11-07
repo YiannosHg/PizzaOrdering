@@ -54,7 +54,7 @@ namespace PizzaOrdering
             // pizzaToppingsDataGridView
             // 
             this.pizzaToppingsDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.pizzaToppingsDataGridView.Location = new System.Drawing.Point(23, 19);
+            this.pizzaToppingsDataGridView.Location = new System.Drawing.Point(23, 23);
             this.pizzaToppingsDataGridView.Name = "pizzaToppingsDataGridView";
             this.pizzaToppingsDataGridView.Size = new System.Drawing.Size(395, 217);
             this.pizzaToppingsDataGridView.TabIndex = 1;
@@ -105,7 +105,7 @@ namespace PizzaOrdering
             this.groupBox1.Controls.Add(this.resetSizesButton);
             this.groupBox1.Controls.Add(this.saveSizesButton);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.groupBox1.Location = new System.Drawing.Point(25, 13);
+            this.groupBox1.Location = new System.Drawing.Point(18, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(436, 301);
             this.groupBox1.TabIndex = 7;
@@ -118,7 +118,7 @@ namespace PizzaOrdering
             this.groupBox2.Controls.Add(this.saveToppingsButton);
             this.groupBox2.Controls.Add(this.resetToppingsButton);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.groupBox2.Location = new System.Drawing.Point(503, 13);
+            this.groupBox2.Location = new System.Drawing.Point(496, 12);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(436, 301);
             this.groupBox2.TabIndex = 8;
@@ -129,7 +129,7 @@ namespace PizzaOrdering
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(951, 441);
+            this.ClientSize = new System.Drawing.Size(951, 325);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "SettingsForm";

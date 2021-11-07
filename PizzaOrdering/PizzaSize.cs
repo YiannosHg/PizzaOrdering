@@ -10,15 +10,15 @@ namespace PizzaOrdering
     {
         public PizzaSize() { }
 
-        public PizzaSize(string name, double prise, int freeToppings)
+        public PizzaSize(string name, double price, int freeToppings)
         {
             Name = name;
-            Prise = prise;
+            Price = price;
             FreeToppings = freeToppings;
         }
 
         public string Name { get; set; }
-        public double Prise { get; set; }
+        public double Price { get; set; }
         public int FreeToppings { get; set; }
     }
 }
