@@ -37,20 +37,21 @@ namespace PizzaOrdering
             this.label4 = new System.Windows.Forms.Label();
             this.priceLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toppingsGroupBox = new System.Windows.Forms.GroupBox();
             this.toppingsLabel = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.sizesGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.toppingsGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // sizesGroupBox
             // 
+            this.sizesGroupBox.AutoSize = true;
             this.sizesGroupBox.Controls.Add(this.label1);
             this.sizesGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
             this.sizesGroupBox.Location = new System.Drawing.Point(12, 153);
@@ -136,16 +137,6 @@ namespace PizzaOrdering
             this.label2.TabIndex = 9;
             this.label2.Text = "Unic Pizza";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::PizzaOrdering.Properties.Resources.pizza;
-            this.pictureBox1.Location = new System.Drawing.Point(562, 31);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(153, 116);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 10;
-            this.pictureBox1.TabStop = false;
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
@@ -175,6 +166,7 @@ namespace PizzaOrdering
             // 
             // toppingsGroupBox
             // 
+            this.toppingsGroupBox.AutoSize = true;
             this.toppingsGroupBox.Controls.Add(this.toppingsLabel);
             this.toppingsGroupBox.Enabled = false;
             this.toppingsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
@@ -194,6 +186,16 @@ namespace PizzaOrdering
             this.toppingsLabel.TabIndex = 0;
             this.toppingsLabel.Text = "Please select toppings";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::PizzaOrdering.Properties.Resources.pizza;
+            this.pictureBox1.Location = new System.Drawing.Point(562, 31);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(153, 116);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 10;
+            this.pictureBox1.TabStop = false;
+            // 
             // PizzaOrderingForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -211,15 +213,16 @@ namespace PizzaOrdering
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "PizzaOrderingForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "PizzaOrdering";
             this.Load += new System.EventHandler(this.PizzaOrderingForm_Load);
             this.sizesGroupBox.ResumeLayout(false);
             this.sizesGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.toppingsGroupBox.ResumeLayout(false);
             this.toppingsGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

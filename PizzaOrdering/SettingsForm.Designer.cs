@@ -35,12 +35,18 @@ namespace PizzaOrdering
             this.resetSizesButton = new System.Windows.Forms.Button();
             this.resetToppingsButton = new System.Windows.Forms.Button();
             this.saveToppingsButton = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.sizesGroupBox = new System.Windows.Forms.GroupBox();
+            this.toppingsGroupBox = new System.Windows.Forms.GroupBox();
+            this.usersGroupBox = new System.Windows.Forms.GroupBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.saveUsersButton = new System.Windows.Forms.Button();
+            this.resetUsersButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pizzaSizeDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pizzaToppingsDataGridView)).BeginInit();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.sizesGroupBox.SuspendLayout();
+            this.toppingsGroupBox.SuspendLayout();
+            this.usersGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // pizzaSizeDataGridView
@@ -99,46 +105,89 @@ namespace PizzaOrdering
             this.saveToppingsButton.UseVisualStyleBackColor = true;
             this.saveToppingsButton.Click += new System.EventHandler(this.saveToppingsButton_Click);
             // 
-            // groupBox1
+            // sizesGroupBox
             // 
-            this.groupBox1.Controls.Add(this.pizzaSizeDataGridView);
-            this.groupBox1.Controls.Add(this.resetSizesButton);
-            this.groupBox1.Controls.Add(this.saveSizesButton);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.groupBox1.Location = new System.Drawing.Point(18, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(436, 301);
-            this.groupBox1.TabIndex = 7;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Sizes";
+            this.sizesGroupBox.Controls.Add(this.pizzaSizeDataGridView);
+            this.sizesGroupBox.Controls.Add(this.resetSizesButton);
+            this.sizesGroupBox.Controls.Add(this.saveSizesButton);
+            this.sizesGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.sizesGroupBox.Location = new System.Drawing.Point(18, 12);
+            this.sizesGroupBox.Name = "sizesGroupBox";
+            this.sizesGroupBox.Size = new System.Drawing.Size(436, 301);
+            this.sizesGroupBox.TabIndex = 7;
+            this.sizesGroupBox.TabStop = false;
+            this.sizesGroupBox.Text = "Sizes";
             // 
-            // groupBox2
+            // toppingsGroupBox
             // 
-            this.groupBox2.Controls.Add(this.pizzaToppingsDataGridView);
-            this.groupBox2.Controls.Add(this.saveToppingsButton);
-            this.groupBox2.Controls.Add(this.resetToppingsButton);
-            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
-            this.groupBox2.Location = new System.Drawing.Point(496, 12);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(436, 301);
-            this.groupBox2.TabIndex = 8;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Toppings";
+            this.toppingsGroupBox.Controls.Add(this.pizzaToppingsDataGridView);
+            this.toppingsGroupBox.Controls.Add(this.saveToppingsButton);
+            this.toppingsGroupBox.Controls.Add(this.resetToppingsButton);
+            this.toppingsGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.toppingsGroupBox.Location = new System.Drawing.Point(496, 12);
+            this.toppingsGroupBox.Name = "toppingsGroupBox";
+            this.toppingsGroupBox.Size = new System.Drawing.Size(436, 301);
+            this.toppingsGroupBox.TabIndex = 8;
+            this.toppingsGroupBox.TabStop = false;
+            this.toppingsGroupBox.Text = "Toppings";
+            // 
+            // usersGroupBox
+            // 
+            this.usersGroupBox.Controls.Add(this.dataGridView1);
+            this.usersGroupBox.Controls.Add(this.saveUsersButton);
+            this.usersGroupBox.Controls.Add(this.resetUsersButton);
+            this.usersGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(161)));
+            this.usersGroupBox.Location = new System.Drawing.Point(970, 12);
+            this.usersGroupBox.Name = "usersGroupBox";
+            this.usersGroupBox.Size = new System.Drawing.Size(436, 301);
+            this.usersGroupBox.TabIndex = 9;
+            this.usersGroupBox.TabStop = false;
+            this.usersGroupBox.Text = "Users";
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(23, 23);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(395, 217);
+            this.dataGridView1.TabIndex = 1;
+            // 
+            // saveUsersButton
+            // 
+            this.saveUsersButton.Location = new System.Drawing.Point(57, 257);
+            this.saveUsersButton.Name = "saveUsersButton";
+            this.saveUsersButton.Size = new System.Drawing.Size(92, 38);
+            this.saveUsersButton.TabIndex = 6;
+            this.saveUsersButton.Text = "Save";
+            this.saveUsersButton.UseVisualStyleBackColor = true;
+            // 
+            // resetUsersButton
+            // 
+            this.resetUsersButton.Location = new System.Drawing.Point(275, 257);
+            this.resetUsersButton.Name = "resetUsersButton";
+            this.resetUsersButton.Size = new System.Drawing.Size(92, 38);
+            this.resetUsersButton.TabIndex = 5;
+            this.resetUsersButton.Text = "Reset";
+            this.resetUsersButton.UseVisualStyleBackColor = true;
             // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(951, 333);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.ClientSize = new System.Drawing.Size(1430, 333);
+            this.Controls.Add(this.usersGroupBox);
+            this.Controls.Add(this.toppingsGroupBox);
+            this.Controls.Add(this.sizesGroupBox);
             this.Name = "SettingsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Settings";
             this.Load += new System.EventHandler(this.SettingsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pizzaSizeDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pizzaToppingsDataGridView)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
+            this.sizesGroupBox.ResumeLayout(false);
+            this.toppingsGroupBox.ResumeLayout(false);
+            this.usersGroupBox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -151,7 +200,11 @@ namespace PizzaOrdering
         private System.Windows.Forms.Button resetSizesButton;
         private System.Windows.Forms.Button resetToppingsButton;
         private System.Windows.Forms.Button saveToppingsButton;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox sizesGroupBox;
+        private System.Windows.Forms.GroupBox toppingsGroupBox;
+        private System.Windows.Forms.GroupBox usersGroupBox;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button saveUsersButton;
+        private System.Windows.Forms.Button resetUsersButton;
     }
 }

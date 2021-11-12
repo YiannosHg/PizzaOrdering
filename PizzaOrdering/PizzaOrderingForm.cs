@@ -42,43 +42,12 @@ namespace PizzaOrdering
         // Declares what happens when PizzaOrderingForm is loaded
         private void PizzaOrderingForm_Load(object sender, EventArgs e)
         {
-            // Sizes radio buttons
-            getPizzaSizesFromFile();
-            sizesRadioButtons = new RadioButton[pizzaSizes.Count]; // Create an array of sizes radiobuttons
+            // Creat sizes radio buttons
+            createPizzaSizesRadioButtons();
 
-            for (int i = 0; i < pizzaSizes.Count; ++i)
-            {
-                sizesRadioButtons[i] = new RadioButton(); // Add radiobutton in array
-
-                // PROPERTIES
-                sizesRadioButtons[i].Text = pizzaSizes[i].Name;
-                sizesRadioButtons[i].Font = sizesGroupBox.Font;
-                sizesRadioButtons[i].Tag = i; // The postition of the radiobutton inside the list. Used to get properties (fields) from pizzaSizes list
-                sizesGroupBox.Controls.Add(sizesRadioButtons[i]);
-                sizesRadioButtons[i].Location = new Point(sizesRadioButtons[i].Location.X + 10 /*+ (30*i)*/, sizesRadioButtons[i].Location.Y + 50 + (20 * i));
-
-                // EVENT
-                sizesRadioButtons[i].CheckedChanged += new System.EventHandler(sizesRadioButtons_CheckedChanged);
-            }
-
-            // Toppings checked boxes
-            getToppingsFromFile();
-            toppingsCheckBoxes = new CheckBox[pizzaToppings.Count]; // Create array of toppings checkboxes
-            //peperoniCheckBox.CheckedChanged += new System.EventHandler(toppingsCheckBoxes_CheckedChanged);
-
-            for (int i = 0; i < pizzaToppings.Count; ++i)
-            {
-                toppingsCheckBoxes[i] = new CheckBox(); // Add checkbox in array
-
-                // PROPERTIES
-                toppingsCheckBoxes[i].Text = pizzaToppings[i].Name;
-                toppingsCheckBoxes[i].Font = toppingsGroupBox.Font;
-                toppingsGroupBox.Controls.Add(toppingsCheckBoxes[i]);
-                toppingsCheckBoxes[i].Location = new Point(toppingsCheckBoxes[i].Location.X + 10 /*+ (30*i)*/, toppingsCheckBoxes[i].Location.Y + 50 + (20 * i));
-
-                // EVENT
-                toppingsCheckBoxes[i].CheckedChanged += new System.EventHandler(toppingsCheckBoxes_CheckedChanged);
-            }
+            // Create toppings checked boxes
+            createPizzaToppingsCheckBoxes();
+            
             //this.Controls.AddRange(toppingsCheckBoxes); // Not needed because CheckBox is added at the GroupBox
         }
 
@@ -190,6 +159,21 @@ namespace PizzaOrdering
         // Function that gets the content of toppings file and stores it in the list
         void getPizzaSizesFromFile()
         {
+            string inputFile = "pizzaSizesInputFile.json";
+
+            if (!File.Exists(inputFile)) // Check if file exists
+            {
+                // if it does not exist create file with one size entry as default
+                PizzaSize smallSize = new PizzaSize("Small", 5.5, 2);
+                pizzaSizes.Add(smallSize);
+
+                // Creates a string that holds the sizes in json form
+                string pizzaSizesJson = JsonConvert.SerializeObject(pizzaSizes);
+
+                // Writes the above string in the file
+                File.WriteAllText("pizzaSizesInputFile.json", pizzaSizesJson);
+            }
+            
             // Variable that holds the content from the json file that holds the pizza sizes
             var pizzaSizesInput = File.ReadAllText("pizzaSizesInputFile.json");
 
@@ -200,6 +184,21 @@ namespace PizzaOrdering
         // Function that gets the content of toppings file and stores it in the list
         void getToppingsFromFile()
         {
+            string inputFile = "pizzaToppingsInputFile.json";
+
+            if (!File.Exists(inputFile)) // Check if file exists
+            {
+                // if it does not exist create file with one topping entry as default
+                PizzaTopping peperoni = new PizzaTopping("Peperoni", 0.75);
+                pizzaToppings.Add(peperoni);
+
+                // Creates a string that holds the toppings in json form
+                string pizzaToppingsJson = JsonConvert.SerializeObject(pizzaToppings);
+
+                // Writes the above string in the file
+                File.WriteAllText("pizzaToppingsInputFile.json", pizzaToppingsJson);
+            }
+
             // Variable that holds the content from the json file that holds the pizza sizes
             var pizzaToppingsInput = File.ReadAllText("pizzaToppingsInputFile.json");
 
@@ -207,10 +206,59 @@ namespace PizzaOrdering
             pizzaToppings = JsonConvert.DeserializeObject<List<PizzaTopping>>(pizzaToppingsInput);
         }
 
+        // Function that creates a radiobutton for each element inside pizzaSizes list
+        void createPizzaSizesRadioButtons()
+        {
+            getPizzaSizesFromFile();
+
+            sizesRadioButtons = new RadioButton[pizzaSizes.Count]; // Create an array of sizes radiobuttons
+
+            for (int i = 0; i < pizzaSizes.Count; ++i)
+            {
+                sizesRadioButtons[i] = new RadioButton(); // Add radiobutton in array
+
+                // PROPERTIES
+                sizesRadioButtons[i].Text = $"{pizzaSizes[i].Name} (€ {pizzaSizes[i].Price})";
+                //Console.WriteLine(pizzaSizes[i].Price);
+                sizesRadioButtons[i].Font = sizesGroupBox.Font;
+                sizesRadioButtons[i].Tag = i; // The postition of the radiobutton inside the list. Used to get properties (fields) from pizzaSizes list
+                sizesGroupBox.Controls.Add(sizesRadioButtons[i]);
+                sizesRadioButtons[i].Location = new Point(sizesRadioButtons[i].Location.X + 10 /*+ (30*i)*/, sizesRadioButtons[i].Location.Y + 50 + (20 * i));
+
+                // EVENT
+                sizesRadioButtons[i].CheckedChanged += new System.EventHandler(sizesRadioButtons_CheckedChanged);
+            }
+        }
+
+        // Function that creates a checkbox for each element inside pizzaToppings list
+        public void createPizzaToppingsCheckBoxes()
+        {
+            getToppingsFromFile();
+
+            toppingsCheckBoxes = new CheckBox[pizzaToppings.Count]; // Create array of toppings checkboxes
+
+            for (int i = 0; i < pizzaToppings.Count; ++i)
+            {
+                toppingsCheckBoxes[i] = new CheckBox(); // Add checkbox in array
+
+                // PROPERTIES
+                toppingsCheckBoxes[i].Text = pizzaToppings[i].Name;
+                toppingsCheckBoxes[i].Font = toppingsGroupBox.Font;
+                toppingsGroupBox.Controls.Add(toppingsCheckBoxes[i]);
+                toppingsCheckBoxes[i].Location = new Point(toppingsCheckBoxes[i].Location.X + 10 /*+ (30*i)*/, toppingsCheckBoxes[i].Location.Y + 50 + (20 * i));
+                //toppingsCheckBoxes[i].Location = new Point(toppingsCheckBoxes[i].Location.X * (i%3) + 50, toppingsCheckBoxes[i].Location.Y * (i/3) + 50);
+
+                // EVENT
+                toppingsCheckBoxes[i].CheckedChanged += new System.EventHandler(toppingsCheckBoxes_CheckedChanged);
+            }
+        }
+
         // Opens the Settings form
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             settingsForm.ShowDialog();
+            createPizzaSizesRadioButtons();
+            createPizzaToppingsCheckBoxes();
         }
 
         // Opens the About form
