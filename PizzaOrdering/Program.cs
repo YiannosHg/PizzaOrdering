@@ -16,10 +16,9 @@ namespace PizzaOrdering
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //LoginForm loginForm = new LoginForm();
-            //loginForm.ShowDialog();
-            //Application.Run(new PizzaOrderingForm());
+            //Changed the order forms are created
             Application.Run(new LoginForm());
+            Application.Run(new PizzaOrderingForm());
         }
     }
 }

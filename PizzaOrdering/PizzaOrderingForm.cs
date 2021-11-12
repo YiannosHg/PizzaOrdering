@@ -34,6 +34,10 @@ namespace PizzaOrdering
         private CheckBox[] toppingsCheckBoxes; // Declare array of toppings checkboxes
         List<PizzaTopping> pizzaToppings = new List<PizzaTopping>();
 
+        // Users variables
+        int userID = CurrentUser.currentUserID;
+        List<User> users = new List<User>();
+
         public PizzaOrderingForm()
         {
             InitializeComponent();
@@ -47,8 +51,10 @@ namespace PizzaOrdering
 
             // Create toppings checked boxes
             createPizzaToppingsCheckBoxes();
-            
-            //this.Controls.AddRange(toppingsCheckBoxes); // Not needed because CheckBox is added at the GroupBox
+
+            // check users access rights
+            getUsersFromFile();
+            checkUserAccessRights();
         }
 
         // Declaring what happens when Order button is clicked
@@ -171,11 +177,11 @@ namespace PizzaOrdering
                 string pizzaSizesJson = JsonConvert.SerializeObject(pizzaSizes);
 
                 // Writes the above string in the file
-                File.WriteAllText("pizzaSizesInputFile.json", pizzaSizesJson);
+                File.WriteAllText(inputFile, pizzaSizesJson);
             }
             
             // Variable that holds the content from the json file that holds the pizza sizes
-            var pizzaSizesInput = File.ReadAllText("pizzaSizesInputFile.json");
+            var pizzaSizesInput = File.ReadAllText(inputFile);
 
             // Gets the pizza sizes and stores them into a list of class objects
             pizzaSizes = JsonConvert.DeserializeObject<List<PizzaSize>>(pizzaSizesInput);
@@ -196,14 +202,32 @@ namespace PizzaOrdering
                 string pizzaToppingsJson = JsonConvert.SerializeObject(pizzaToppings);
 
                 // Writes the above string in the file
-                File.WriteAllText("pizzaToppingsInputFile.json", pizzaToppingsJson);
+                File.WriteAllText(inputFile, pizzaToppingsJson);
             }
 
             // Variable that holds the content from the json file that holds the pizza sizes
-            var pizzaToppingsInput = File.ReadAllText("pizzaToppingsInputFile.json");
+            var pizzaToppingsInput = File.ReadAllText(inputFile);
 
             // Gets the pizza sizes and stores them into a list of class objects
             pizzaToppings = JsonConvert.DeserializeObject<List<PizzaTopping>>(pizzaToppingsInput);
+        }
+
+        void getUsersFromFile()
+        {
+            string inputFile = "usersInputFile.json";
+
+            // Variable that holds the content from the json file that holds the users
+            var usersInput = File.ReadAllText(inputFile);
+
+            // Gets the users and stores them into a list of class objects
+            users = JsonConvert.DeserializeObject<List<User>>(usersInput);
+        }
+
+        // Checks if the current user has access to edit any list, if not Settings button is disabled
+        void checkUserAccessRights()
+        {
+            if (false == users[userID].CanEditSizes && false == users[userID].CanEditToppings && false == users[userID].CanEditUsers)
+                settingsToolStripMenuItem.Enabled = false;
         }
 
         // Function that creates a radiobutton for each element inside pizzaSizes list
@@ -264,7 +288,7 @@ namespace PizzaOrdering
         // Opens the About form
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            aboutForm.ShowDialog();   
+            aboutForm.ShowDialog();
         }
     }
 }
