@@ -213,7 +213,7 @@ namespace PizzaOrdering
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "PizzaOrderingForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PizzaOrdering";
             this.Load += new System.EventHandler(this.PizzaOrderingForm_Load);
             this.sizesGroupBox.ResumeLayout(false);

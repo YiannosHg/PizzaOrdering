@@ -96,7 +96,7 @@ namespace PizzaOrdering
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "AboutForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "AboutForm";
             this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

@@ -12,10 +12,16 @@ using System.Windows.Forms;
 
 namespace PizzaOrdering
 {
-    // Static class that holds the logedin user
+    // Static class that holds the loggedin user
     public static class CurrentUser
     {
         public static int currentUserID;
+    }
+
+    // Static class that holds a bool variable to check if a user is loggedin
+    public static class LoggedIn
+    {
+        public static bool isLoggedIn = false;
     }
 
     public partial class LoginForm : Form
@@ -40,6 +46,7 @@ namespace PizzaOrdering
             if (checkUsersCredentials())
             {
                 this.Close();
+                LoggedIn.isLoggedIn = true;
             }
         }
 

@@ -16,9 +16,13 @@ namespace PizzaOrdering
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Changed the order forms are created
+            
+            // Login form is loaded first
             Application.Run(new LoginForm());
-            Application.Run(new PizzaOrderingForm());
+            // Checks if a user is loggedin to run the form otherwise 
+            // if login form is closed by pressing 'X' PizzaOrderingForm runs
+            if (LoggedIn.isLoggedIn)
+                Application.Run(new PizzaOrderingForm());
         }
     }
 }

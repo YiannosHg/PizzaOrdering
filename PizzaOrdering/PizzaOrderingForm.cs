@@ -24,7 +24,7 @@ namespace PizzaOrdering
         int numOfToppings = 0;
         string deliveryTime = null;
         SettingsForm settingsForm = new SettingsForm();
-        AboutForm aboutForm = new AboutForm();
+        //AboutForm aboutForm = new AboutForm(); // Moved it in aboutButton because it threw exception
 
         // RadioButtons variables
         private RadioButton[] sizesRadioButtons;
@@ -288,6 +288,7 @@ namespace PizzaOrdering
         // Opens the About form
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            AboutForm aboutForm = new AboutForm();
             aboutForm.ShowDialog();
         }
     }
