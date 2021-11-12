@@ -26,10 +26,6 @@ namespace PizzaOrdering
         { 
             getSizesFromFile();
             getToppingsFromFile();
-
-            // Sets the source of data to be shown in DataGridView
-            pizzaSizeDataGridView.DataSource = new BindingList<PizzaSize>(pizzaSizes);
-            pizzaToppingsDataGridView.DataSource = new BindingList<PizzaTopping>(pizzaToppings);
         }
 
         // Declares what happens when saveSizesButton button is clicked
@@ -68,6 +64,9 @@ namespace PizzaOrdering
 
             // Gets the pizza sizes and stores them into a list of class objects
             pizzaSizes = JsonConvert.DeserializeObject<List<PizzaSize>>(pizzaSizesInput);
+
+            // Sets the source of data to be shown in DataGridView
+            pizzaSizeDataGridView.DataSource = new BindingList<PizzaSize>(pizzaSizes);
         }
 
         // Function that gets the pizzaSizes list content and serialize it to json type string
@@ -88,6 +87,9 @@ namespace PizzaOrdering
 
             // Gets the pizza sizes and stores them into a list of class objects
             pizzaToppings = JsonConvert.DeserializeObject<List<PizzaTopping>>(pizzaToppingsInput);
+
+            // Sets the source of data to be shown in DataGridView
+            pizzaToppingsDataGridView.DataSource = new BindingList<PizzaTopping>(pizzaToppings);
         }
 
         // Function that gets the pizzaToppings list content and serialize it to json type string

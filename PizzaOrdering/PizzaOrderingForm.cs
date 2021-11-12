@@ -213,6 +213,7 @@ namespace PizzaOrdering
             settingsForm.ShowDialog();
         }
 
+        // Opens the About form
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             aboutForm.ShowDialog();   
