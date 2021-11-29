@@ -243,7 +243,6 @@ namespace PizzaOrdering
 
                 // PROPERTIES
                 sizesRadioButtons[i].Text = $"{pizzaSizes[i].Name} (€ {pizzaSizes[i].Price})";
-                //Console.WriteLine(pizzaSizes[i].Price);
                 sizesRadioButtons[i].Font = sizesGroupBox.Font;
                 sizesRadioButtons[i].Tag = i; // The postition of the radiobutton inside the list. Used to get properties (fields) from pizzaSizes list
                 sizesGroupBox.Controls.Add(sizesRadioButtons[i]);
@@ -270,7 +269,6 @@ namespace PizzaOrdering
                 toppingsCheckBoxes[i].Font = toppingsGroupBox.Font;
                 toppingsGroupBox.Controls.Add(toppingsCheckBoxes[i]);
                 toppingsCheckBoxes[i].Location = new Point(toppingsCheckBoxes[i].Location.X + 10 /*+ (30*i)*/, toppingsCheckBoxes[i].Location.Y + 50 + (20 * i));
-                //toppingsCheckBoxes[i].Location = new Point(toppingsCheckBoxes[i].Location.X * (i%3) + 50, toppingsCheckBoxes[i].Location.Y * (i/3) + 50);
 
                 // EVENT
                 toppingsCheckBoxes[i].CheckedChanged += new System.EventHandler(toppingsCheckBoxes_CheckedChanged);

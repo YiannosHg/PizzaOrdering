@@ -32,6 +32,7 @@ namespace PizzaOrdering
         public LoginForm()
         {
             InitializeComponent();
+            passwordTextBox.PasswordChar = '*';
         }
 
         private void LoginForm_Load(object sender, EventArgs e)
